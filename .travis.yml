@@ -1,0 +1,27 @@
+language: python
+python:
+- '3.8'
+services:
+- postgresql
+addons:
+  postgresql: '9.6'
+install:
+- pip install -r requirements.txt
+before_script:
+- psql --version
+- psql -c 'create database yourdatabase_test;' -U postgres
+- python manage.py db upgrade
+script:
+- pytest
+deploy:
+  provider: heroku
+  api_key:
+    secure:
+  app: your-heroku-app-name
+  on:
+    repo: githubu_sername/repo_name
+    branch: main
+  skip_cleanup: 'true'
+  run:
+    - pip install -r requirements.txt
+    - python manage.py db upgrade

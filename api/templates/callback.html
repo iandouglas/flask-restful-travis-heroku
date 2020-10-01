@@ -1,0 +1,10 @@
+<h1>Welcome back!</h1>
+
+<p>Here's your JWT:</p>
+<textarea id="jwt" style="width:500px;height:300px;"></textarea>
+
+<script type="text/javascript">
+document.getElementById("jwt").innerText = window.location.href.split("access_token=")[1].split("&")[0];
+</script>
+
+
